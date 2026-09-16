@@ -1,0 +1,32 @@
+[project]
+name = "tern"
+version = "0.1.0"
+description = "TERN: a delta-rule memory with seasonal reference and online adaptation for epidemic forecasting"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "BSD-3-Clause-Clear" }
+authors = [{ name = "Shunya Nagashima" }, { name = "Yuta Funayama" }]
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "matplotlib>=3.8",
+    "torch>=2.13,<3.0",
+    "einops>=0.8",               # Time-Series-Library baselines
+    "reformer-pytorch>=1.4.4",   # Time-Series-Library attention layers
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+zero-shot = ["chronos-forecasting>=2.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+exclude = [".venv", "ext_repos"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B"]
+ignore = ["E731"]

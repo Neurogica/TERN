@@ -1,0 +1,23 @@
+{
+  "_comment": "Final TERN configurations per regime and dataset. `kwargs` -> --model_kwargs, `args` -> extra train.py flags; `*_by_horizon` override per lead time.",
+  "window": {
+    "japan":     {"kwargs": {"d_model": 64, "n_layers": 2, "n_heads": 8, "dropout": 0.1, "head": "flatten", "revin": false},
+                  "args": "--clip 1.0 --refit_trainval 0.5"},
+    "region785": {"kwargs": {"d_model": 64, "n_layers": 2, "n_heads": 8, "dropout": 0.1, "head": "flatten", "revin": false},
+                  "args": "--clip 1.0 --refit_trainval 0.5"},
+    "state360":  {"kwargs": {"d_model": 64, "n_layers": 2, "n_heads": 8, "dropout": 0.1, "head": "flatten", "revin": false},
+                  "args": "--clip 1.0 --refit_trainval 0.5"}
+  },
+  "full_history": {
+    "japan":     {"kwargs": {"d_model": 32, "n_layers": 2, "n_heads": 8, "dropout": 0.5, "season_embedding": true},
+                  "args": "--full_history --clip 1.0 --scale_weighted_loss --online_blend 12"},
+    "region785": {"kwargs": {"d_model": 32, "n_layers": 2, "n_heads": 8, "dropout": 0.5,
+                             "climatology_seasons": 2, "climatology_width": 2, "climatology_residual": true,
+                             "residual_scale": 0.5},
+                  "kwargs_by_horizon": {"5": {"residual_scale": 0.3}, "10": {"residual_scale": 0.1}, "15": {"residual_scale": 0.05}},
+                  "args": "--full_history --clip 1.0 --scale_weighted_loss --val_every 2",
+                  "args_by_horizon": {"3": "--online_refit 1", "5": "--online_refit 1"}},
+    "state360":  {"kwargs": {"d_model": 64, "n_layers": 2, "n_heads": 8, "dropout": 0.4, "adjacency_bias": true},
+                  "args": "--full_history --clip 1.0 --ema 0.99 --online_refit 1 --val_every 2"}
+  }
+}

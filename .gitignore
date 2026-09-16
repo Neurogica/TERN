@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# environments
+.venv/
+.python-version
+
+# third-party code, data and run artefacts
+ext_repos/
+data/
+results/
+preds/
+jobs/
+logs/
+tables/
+figures/
