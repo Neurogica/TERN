@@ -30,3 +30,7 @@ exclude = [".venv", "ext_repos"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "W", "B"]
 ignore = ["E731"]
+
+[tool.uv]
+# GHSA-6q48-6c7w-9gw2: distrust the compromised emSign certificate chain.
+constraint-dependencies = ["certifi>=2026.10.19"]
